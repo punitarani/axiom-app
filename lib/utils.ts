@@ -25,9 +25,9 @@ export function formatDate(date: string): string {
   })
 }
 
-export function formatNumber(number: number): string {
+export function formatNumber(number: number, decimal = 0): string {
   return number.toLocaleString('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: decimal,
+    maximumFractionDigits: decimal,
   })
 }

@@ -127,7 +127,7 @@ export default function Component({ instrument }: StockInfoCardProps) {
           <div>
             <p className="font-medium">
               {instrument.fundamental?.returnOnEquity
-                ? formatNumber(instrument.fundamental?.returnOnEquity)
+                ? formatNumber(instrument.fundamental?.returnOnEquity, 2)
                 : '-'}
             </p>
             <p className="text-sm text-muted-foreground">Return on Equity</p>
@@ -135,7 +135,7 @@ export default function Component({ instrument }: StockInfoCardProps) {
           <div>
             <p className="font-medium">
               {instrument.fundamental?.returnOnAssets
-                ? formatNumber(instrument.fundamental?.returnOnAssets)
+                ? formatNumber(instrument.fundamental?.returnOnAssets, 2)
                 : '-'}
             </p>
             <p className="text-sm text-muted-foreground">Return on Assets</p>
@@ -143,7 +143,7 @@ export default function Component({ instrument }: StockInfoCardProps) {
           <div>
             <p className="font-medium">
               {instrument.fundamental?.operatingMarginTTM
-                ? formatNumber(instrument.fundamental?.operatingMarginTTM)
+                ? formatNumber(instrument.fundamental?.operatingMarginTTM, 2)
                 : '-'}
             </p>
             <p className="text-sm text-muted-foreground">Operating Margin (TTM)</p>
@@ -151,7 +151,7 @@ export default function Component({ instrument }: StockInfoCardProps) {
           <div>
             <p className="font-medium">
               {instrument.fundamental?.netProfitMarginTTM
-                ? formatNumber(instrument.fundamental?.netProfitMarginTTM)
+                ? formatNumber(instrument.fundamental?.netProfitMarginTTM, 2)
                 : '-'}
             </p>
             <p className="text-sm text-muted-foreground">Net Profit Margin (TTM)</p>
