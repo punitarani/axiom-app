@@ -3,19 +3,22 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+import LevelOneCard from '@/components/LevelOneCard'
 import PriceHistoryChart from '@/components/PriceHistoryChart'
 import StockFundamentalsCard from '@/components/StockFundamentalsCard'
 import StockInfoCard from '@/components/StockInfoCard'
 import { Alert } from '@/components/ui/alert'
 
-import type { CandleList, InstrumentResponse } from './mdata'
+import type { CandleList, InstrumentResponse, LevelOneEquityContent } from './mdata'
 import { getEquityDailyPriceHistory, getEquityInfo } from './mdata/equity'
+import { connectToLevelOneEquityStream } from './mdata/stream'
 
 export default function Home() {
   const loading = useRef<boolean>(true)
   const fetching = useRef<boolean>(false)
   const [instrument, setInstrument] = useState<InstrumentResponse>()
   const [priceHistory, setPriceHistory] = useState<CandleList>()
+  const [levelOneContent, setLevelOneContent] = useState<LevelOneEquityContent>()
 
   useEffect(() => {
     if (!priceHistory && !fetching.current) {
@@ -30,6 +33,24 @@ export default function Home() {
     }
   }, [fetching, instrument, priceHistory])
 
+  useEffect(() => {
+    const ws = connectToLevelOneEquityStream(
+      (data: LevelOneEquityContent) => {
+        setLevelOneContent(data)
+      },
+      (error) => {
+        console.error('WebSocket error:', error)
+      },
+      () => {
+        console.log('WebSocket connection closed')
+      },
+    )
+
+    return () => {
+      ws.close()
+    }
+  }, [])
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-24">
       {loading.current ? (
@@ -37,11 +58,18 @@ export default function Home() {
       ) : instrument === undefined || priceHistory === undefined ? (
         <Alert>Error fetching data</Alert>
       ) : (
-        <div className="w-full max-w-5xl flex flex-col gap-8">
-          <StockInfoCard instrument={instrument} />
+        <section className="w-full max-w-5xl flex flex-col gap-8">
+          <div className="w-full grid grid-cols-1 md:grid-cols-10 gap-6">
+            <div className="flex md:col-span-7">
+              <StockInfoCard instrument={instrument} />
+            </div>
+            <div className="flex w-full md:col-span-3">
+              <LevelOneCard levelOneContent={levelOneContent} />
+            </div>
+          </div>
           <PriceHistoryChart data={priceHistory} />
           <StockFundamentalsCard instrument={instrument} />
-        </div>
+        </section>
       )}
     </main>
   )

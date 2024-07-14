@@ -179,3 +179,28 @@ export class InstrumentResponse {
   bondInstrumentInfo?: Bond
   type?: Type
 }
+
+export interface LevelOneEquityContent {
+  ASK_ID?: string
+  ASK_MIC_ID?: string
+  ASK_PRICE?: number
+  ASK_SIZE?: number
+  ASK_TIME_MILLIS?: number
+  BID_ID?: string
+  BID_MIC_ID?: string
+  BID_PRICE?: number
+  BID_SIZE?: number
+  BID_TIME_MILLIS?: number
+  LAST_ID?: string
+  LAST_MIC_ID?: string
+  LAST_SIZE?: number
+  MARK?: number
+  MARK_CHANGE?: number
+  MARK_CHANGE_PERCENT?: number
+  QUOTE_TIME_MILLIS?: number
+  REGULAR_MARKET_LAST_SIZE?: number
+  REGULAR_MARKET_TRADE_MILLIS?: number
+  TOTAL_VOLUME?: number
+  TRADE_TIME_MILLIS?: number
+  key?: string
+}

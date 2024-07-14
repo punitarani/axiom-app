@@ -1,7 +1,8 @@
 // components/StockInfoCard.tsx
 
-import type { InstrumentResponse } from '@/app/mdata/types'
+import type { InstrumentResponse, LevelOneEquityContent } from '@/app/mdata/types'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { formatAmount, formatNumber } from '@/lib/utils'
 
 interface StockInfoCardProps {
   instrument: InstrumentResponse
@@ -16,45 +17,37 @@ export default function Component({ instrument }: StockInfoCardProps) {
           <p className="text-2xl font-medium">{instrument.description}</p>
         </div>
       </CardHeader>
-      <CardContent className="grid grid-cols-1 gap-6 p-6 md:grid-cols-4">
+      <CardContent className="grid grid-cols-1 gap-6 p-6 md:grid-cols-3">
         <div className="grid grid-cols-1 gap-4">
           <div>
-            <p className="text-sm text-muted-foreground">Description</p>
-            <p className="font-medium">{instrument.description}</p>
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground">CUSIP</p>
-            <p className="font-medium">{instrument.cusip}</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 gap-4">
-          <div>
-            <p className="text-sm text-muted-foreground">Exchange</p>
             <p className="font-medium">{instrument.exchange}</p>
+            <p className="text-sm text-muted-foreground">Exchange</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Asset Type</p>
             <p className="font-medium">{instrument.assetType}</p>
+            <p className="text-sm text-muted-foreground">Asset Type</p>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4">
           <div>
+            <p className="font-medium">
+              {formatNumber(instrument.fundamental?.avg3MonthVolume ?? 0)}
+            </p>
             <p className="text-sm text-muted-foreground">Volume (3 Month Avg.)</p>
-            <p className="font-medium">{instrument.fundamental?.avg3MonthVolume}</p>
           </div>
           <div>
+            <p className="font-medium">{formatAmount(instrument.fundamental?.marketCap ?? 0)}</p>
             <p className="text-sm text-muted-foreground">Market Cap</p>
-            <p className="font-medium">${instrument.fundamental?.marketCap}</p>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4">
           <div>
+            <p className="font-medium">{formatAmount(instrument.fundamental?.high52 ?? 0, true)}</p>
             <p className="text-sm text-muted-foreground">52-Week High</p>
-            <p className="font-medium">${instrument.fundamental?.high52}</p>
           </div>
           <div>
+            <p className="font-medium">{formatAmount(instrument.fundamental?.low52 ?? 0, true)}</p>
             <p className="text-sm text-muted-foreground">52-Week Low</p>
-            <p className="font-medium">${instrument.fundamental?.low52}</p>
           </div>
         </div>
       </CardContent>
