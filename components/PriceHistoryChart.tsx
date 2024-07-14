@@ -60,14 +60,8 @@ export default function CandleChart({ data }: CandleChartProps) {
       now.getMonth() - monthsToSubtract,
       now.getDate(),
     )
-    const availableDates = data.candles?.map(
-      (candle) => new Date(candle.datetime || ''),
-    )
-    if (
-      availableDates &&
-      availableDates.length > 0 &&
-      startDate < availableDates[0]
-    ) {
+    const availableDates = data.candles?.map((candle) => new Date(candle.datetime || ''))
+    if (availableDates && availableDates.length > 0 && startDate < availableDates[0]) {
       startDate = availableDates[0]
     }
 
@@ -160,13 +154,7 @@ export default function CandleChart({ data }: CandleChartProps) {
               tickFormatter={(value) => `$${value.toFixed(2)}`}
               domain={['auto', 'auto']}
             />
-            <Line
-              yAxisId="left"
-              dataKey="close"
-              type="natural"
-              strokeWidth={2}
-              dot={false}
-            />
+            <Line yAxisId="left" dataKey="close" type="natural" strokeWidth={2} dot={false} />
           </LineChart>
         </ChartContainer>
       </CardContent>
