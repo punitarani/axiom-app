@@ -12,7 +12,7 @@ Backend: [https://github.com/punitarani/axiom](https://github.com/punitarani/axi
 
 ## Demo
 
-![Axiom Demo](./data/demo.jpeg)
+![Axiom Demo](./data/demo.gif)
 
 ---
 
