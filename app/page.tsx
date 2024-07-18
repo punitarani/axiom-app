@@ -7,10 +7,13 @@ import LevelOneCard from '@/components/LevelOneCard'
 import PriceHistoryChart from '@/components/PriceHistoryChart'
 import StockFundamentalsCard from '@/components/StockFundamentalsCard'
 import StockInfoCard from '@/components/StockInfoCard'
+import WeeklyResistanceCard from '@/components/WeeklyResistanceCard'
 import { Alert } from '@/components/ui/alert'
+import { Separator } from '@/components/ui/separator'
 
 import type { CandleList, InstrumentResponse, LevelOneEquityContent } from './mdata'
 import { getEquityDailyPriceHistory, getEquityInfo } from './mdata/equity'
+import { type WeeklyResistance, getWeeklyResistance } from './mdata/ml'
 import { connectToLevelOneEquityStream } from './mdata/stream'
 
 export default function Home() {
@@ -19,6 +22,7 @@ export default function Home() {
   const [instrument, setInstrument] = useState<InstrumentResponse>()
   const [priceHistory, setPriceHistory] = useState<CandleList>()
   const [levelOneContent, setLevelOneContent] = useState<LevelOneEquityContent>()
+  const [weeklyResistance, setWeeklyResistance] = useState<WeeklyResistance>()
 
   useEffect(() => {
     if (!priceHistory && !fetching.current) {
@@ -29,6 +33,10 @@ export default function Home() {
       getEquityDailyPriceHistory('SPY').then((data) => {
         setPriceHistory(data)
         loading.current = false
+      })
+      getWeeklyResistance('SPY').then((data) => {
+        setWeeklyResistance(data)
+        console.log(data)
       })
     }
   }, [fetching, instrument, priceHistory])
@@ -55,7 +63,9 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-24">
       {loading.current ? (
         <div>Loading...</div>
-      ) : instrument === undefined || priceHistory === undefined ? (
+      ) : instrument === undefined ||
+        priceHistory === undefined ||
+        weeklyResistance === undefined ? (
         <Alert>Error fetching data</Alert>
       ) : (
         <section className="w-full max-w-5xl flex flex-col gap-8">
@@ -69,6 +79,11 @@ export default function Home() {
           </div>
           <PriceHistoryChart data={priceHistory} />
           <StockFundamentalsCard instrument={instrument} />
+          <Separator />
+          <div className="w-full">
+            <h2 className="text-2xl font-bold mb-4">Models</h2>
+            <WeeklyResistanceCard weeklyResistance={weeklyResistance} candleList={priceHistory} />
+          </div>
         </section>
       )}
     </main>
