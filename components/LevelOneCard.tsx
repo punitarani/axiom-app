@@ -30,25 +30,25 @@ export default function LevelOneCard({ levelOneContent }: LevelOneCardProps) {
   useEffect(() => {
     if (levelOneContent) {
       if (
-        (levelOneContent.ASK_PRICE &&
-          levelOneContent.ASK_PRICE > 0 &&
-          levelOneContent.ASK_PRICE !== askData.price) &&
-        (levelOneContent.ASK_SIZE &&
-          levelOneContent.ASK_SIZE > 0 &&
-          levelOneContent.ASK_SIZE !== askData.size)
+        levelOneContent.ASK_PRICE &&
+        levelOneContent.ASK_PRICE > 0 &&
+        levelOneContent.ASK_PRICE !== askData.price &&
+        levelOneContent.ASK_SIZE &&
+        levelOneContent.ASK_SIZE > 0 &&
+        levelOneContent.ASK_SIZE !== askData.size
       ) {
         setAskData({ price: levelOneContent.ASK_PRICE, size: levelOneContent.ASK_SIZE })
       }
       if (
-        (levelOneContent.MARK &&
-          levelOneContent.MARK > 0 &&
-          levelOneContent.MARK !== markData.mark) &&
-        (levelOneContent.MARK_CHANGE &&
-          levelOneContent.MARK_CHANGE > 0 &&
-          levelOneContent.MARK_CHANGE !== markData.change) &&
-        (levelOneContent.MARK_CHANGE_PERCENT &&
-          levelOneContent.MARK_CHANGE_PERCENT > 0 &&
-          levelOneContent.MARK_CHANGE_PERCENT !== markData.percentChange)
+        levelOneContent.MARK &&
+        levelOneContent.MARK > 0 &&
+        levelOneContent.MARK !== markData.mark &&
+        levelOneContent.MARK_CHANGE &&
+        levelOneContent.MARK_CHANGE > 0 &&
+        levelOneContent.MARK_CHANGE !== markData.change &&
+        levelOneContent.MARK_CHANGE_PERCENT &&
+        levelOneContent.MARK_CHANGE_PERCENT > 0 &&
+        levelOneContent.MARK_CHANGE_PERCENT !== markData.percentChange
       ) {
         setMarkData({
           mark: levelOneContent.MARK,
@@ -57,12 +57,12 @@ export default function LevelOneCard({ levelOneContent }: LevelOneCardProps) {
         })
       }
       if (
-        (levelOneContent.BID_PRICE &&
-          levelOneContent.BID_PRICE > 0 &&
-          levelOneContent.BID_PRICE !== bidData.price) &&
-        (levelOneContent.BID_SIZE &&
-          levelOneContent.BID_SIZE > 0 &&
-          levelOneContent.BID_SIZE !== bidData.size)
+        levelOneContent.BID_PRICE &&
+        levelOneContent.BID_PRICE > 0 &&
+        levelOneContent.BID_PRICE !== bidData.price &&
+        levelOneContent.BID_SIZE &&
+        levelOneContent.BID_SIZE > 0 &&
+        levelOneContent.BID_SIZE !== bidData.size
       ) {
         setBidData({ price: levelOneContent.BID_PRICE, size: levelOneContent.BID_SIZE })
       }
