@@ -12,7 +12,11 @@ Backend: [https://github.com/punitarani/axiom](https://github.com/punitarani/axi
 
 ## Demo
 
-![Axiom Demo](./data/demo.gif)
+![Axiom Demo](./data/demo.png)
+
+### Real-time Level One Quotes
+
+![Axiom L1 Demo](./data/demo.gif)
 
 ---
 
