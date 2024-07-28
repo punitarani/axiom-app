@@ -1,5 +1,6 @@
 // components/LevelOneCard.tsx
 
+import { Loader } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { Card, CardContent } from '@/components/ui/card'
@@ -72,8 +73,11 @@ export default function LevelOneCard({ levelOneContent }: LevelOneCardProps) {
   return (
     <Card className="w-full h-full min-h-52">
       {levelOneContent === undefined ? (
-        <CardContent className="flex items-center justify-between">
-          <p>Waiting for live data...</p>
+        <CardContent className="flex items-center justify-center">
+          <div className="flex flex-col items-center">
+            <Loader className="mb-2" />
+            <p>Waiting for live data...</p>
+          </div>
         </CardContent>
       ) : (
         <CardContent className="flex flex-col py-4 h-full justify-between">
