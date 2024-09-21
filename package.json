@@ -7,7 +7,8 @@
     "start": "next start",
     "dev": "next dev -H 0.0.0.0",
     "format": "biome check  . --write",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:api": "openapi-ts"
   },
   "dependencies": {
     "@radix-ui/react-progress": "^1.1.0",
