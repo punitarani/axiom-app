@@ -5,7 +5,7 @@ import { formatAmount, formatPercentage } from '@/lib/utils'
 import { ArrowDown, ArrowUp, Minus } from 'lucide-react'
 
 import type { WeeklyResistance } from '@/app/mdata/ml'
-import type { CandleList } from '@/app/mdata/types'
+import type { CandleList } from '@/lib/api'
 
 interface WeeklyResistanceCardProps {
   weeklyResistance: WeeklyResistance

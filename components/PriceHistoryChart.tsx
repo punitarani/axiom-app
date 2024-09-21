@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-import type { CandleList } from '@/app/mdata'
+import type { CandleList } from '@/lib/api'
 
 const chartConfig = {
   close: {

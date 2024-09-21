@@ -1,8 +1,9 @@
 // components/StockInfoCard.tsx
 
-import type { InstrumentResponse, LevelOneEquityContent } from '@/app/mdata/types'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { formatAmount, formatNumber } from '@/lib/utils'
+
+import type { InstrumentResponse } from '@/lib/api'
 
 interface StockInfoCardProps {
   instrument: InstrumentResponse

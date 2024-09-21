@@ -1,9 +1,10 @@
 // components/StockInfoCard.tsx
 
-import type { InstrumentResponse } from '@/app/mdata/types'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 import { formatAmount, formatDate, formatNumber, formatPercentage } from '@/lib/utils'
+
+import type { InstrumentResponse } from '@/lib/api'
 
 interface StockInfoCardProps {
   instrument: InstrumentResponse

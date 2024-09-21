@@ -11,10 +11,12 @@ import WeeklyResistanceCard from '@/components/WeeklyResistanceCard'
 import { Alert } from '@/components/ui/alert'
 import { Separator } from '@/components/ui/separator'
 
-import type { CandleList, InstrumentResponse, LevelOneEquityContent } from './mdata'
 import { getEquityDailyPriceHistory, getEquityInfo } from './mdata/equity'
 import { type WeeklyResistance, getWeeklyResistance } from './mdata/ml'
 import { connectToLevelOneEquityStream } from './mdata/stream'
+
+import type { CandleList, InstrumentResponse } from '@/lib/api'
+import type { LevelOneEquityContent } from './mdata/types'
 
 export default function Home() {
   const loading = useRef<boolean>(true)
