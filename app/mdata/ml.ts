@@ -1,6 +1,6 @@
 // app/mdata/ml.ts
 
-const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL
+import { getWeeklyResistanceMlWeeklyResistanceGet } from '@/lib/api'
 
 export interface WeeklyResistance {
   symbol: string
@@ -9,6 +9,6 @@ export interface WeeklyResistance {
 }
 
 export async function getWeeklyResistance(symbol: string): Promise<WeeklyResistance> {
-  const response = await fetch(`${backendUrl}/ml/weekly-resistance?symbol=${symbol}`)
-  return await response.json()
+  const response = await getWeeklyResistanceMlWeeklyResistanceGet({ query: { symbol: symbol } })
+  return response.data as WeeklyResistance
 }
